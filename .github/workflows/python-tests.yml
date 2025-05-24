@@ -51,7 +51,7 @@ jobs:
           mv "$REPORT_NAME" reports/
 
       - name: Upload test report artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: html-reports
           path: reports/
