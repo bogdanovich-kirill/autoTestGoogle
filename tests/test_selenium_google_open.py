@@ -1,7 +1,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 
 def test_open_google(driver):
-    # Открываем Google
+    # Открываем Google.com
     driver.get("https://www.google.com")
 
     # Ждем загрузки страницы (ожидаем, что URL изменится на тот, что содержит 'google.com')
