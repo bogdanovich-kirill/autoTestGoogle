@@ -8,7 +8,6 @@
 
 ## Установка
 1. Клонируйте репозиторий:
-   ```bash
   git clone git@github.com:bogdanovich-kirill/autoTestGoogle.git
 2. Перейдите в директорию проекта и активируйте виртуальное окружение:
   cd autoTestGoogle
