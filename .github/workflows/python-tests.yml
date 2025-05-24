@@ -22,7 +22,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.8'  # можешь указать версию Python, которая тебе нужна
+          python-version: '3.13'  # можешь указать версию Python, которая тебе нужна
 
       # Шаг 3: Устанавливаем зависимости
       - name: Install dependencies
