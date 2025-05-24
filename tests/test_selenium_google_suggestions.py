@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 def test_google_autocomplete_suggestions(driver):
-    driver.get("https://www.google.com")
+    driver.get("https://www.google.com/?hl=ru")
 
     # Вводим запрос в поле поиска
     search_box = WebDriverWait(driver, 10).until(
