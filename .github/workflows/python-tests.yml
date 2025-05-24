@@ -42,8 +42,17 @@ jobs:
           source venv/bin/activate
           pytest tests/ --maxfail=1 --disable-warnings -v
 
-      - name: Generate HTML report
+      - name: Generate HTML report with timestamp
         run: |
           source venv/bin/activate
-          pytest tests/ --html=report.html --maxfail=1 --disable-warnings -v
-          mv report.html $GITHUB_WORKSPACE/
+          TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+          REPORT_NAME="report_${TIMESTAMP}.html"
+          pytest tests/ --html="$REPORT_NAME" --maxfail=1 --disable-warnings -v
+          mkdir -p reports
+          mv "$REPORT_NAME" reports/
+
+      - name: Upload test report artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: html-reports
+          path: reports/
