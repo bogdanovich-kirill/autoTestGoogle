@@ -14,14 +14,13 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.13'
 
-      # ✅ Новый шаг: Установка Chrome
       - name: Install Google Chrome
         run: |
           sudo apt-get update
@@ -52,7 +51,7 @@ jobs:
           mv "$REPORT_NAME" reports/
 
       - name: Upload test report artifact
-        uses: actions/upload-artifact@v3.1.3
+        uses: actions/upload-artifact@v3
         with:
           name: html-reports
           path: reports/
