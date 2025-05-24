@@ -27,5 +27,7 @@ search_button.click()
 # Ждем, чтобы увидеть результаты
 time.sleep(5)
 
+assert driver.find_element(By.NAME, "btnK").is_displayed(), "Кнопка не найдена"
+
 # Закрываем браузер
 driver.quit()

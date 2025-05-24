@@ -10,5 +10,7 @@ driver.get('https://www.google.com')
 import time
 time.sleep(5)
 
+assert "google.com" in driver.current_url, "Не удалось открыть сайт Google"
+
 # Закрываем браузер
 driver.quit()

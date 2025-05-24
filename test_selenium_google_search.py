@@ -18,5 +18,7 @@ search_box.send_keys(Keys.RETURN)  # Нажимаем Enter
 import time
 time.sleep(5)
 
+assert "Selenium Python" in driver.page_source, "Результаты поиска не найдены"
+
 # Закрываем браузер
 driver.quit()
