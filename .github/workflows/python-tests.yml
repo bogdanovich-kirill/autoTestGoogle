@@ -1,43 +1,47 @@
 name: Python CI
 
-# Настроим события, которые будут запускать процесс CI/CD
 on:
   push:
     branches:
-      - main  # запустится, когда ты сделаешь push в ветку main
+      - main
   pull_request:
     branches:
-      - main  # запустится, когда будет pull request в main
+      - main
 
 jobs:
   test:
-    runs-on: ubuntu-latest  # это говорит, что тесты будут запускаться на виртуальной машине Ubuntu
+    runs-on: ubuntu-latest
 
     steps:
-      # Шаг 1: клонируем репозиторий
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Шаг 2: устанавливаем Python
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.13'  # можешь указать версию Python, которая тебе нужна
+          python-version: '3.13'
 
-      # Шаг 3: Устанавливаем зависимости
+      # ✅ Новый шаг: Установка Chrome
+      - name: Install Google Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget gnupg2
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
       - name: Install dependencies
         run: |
           python -m venv venv
           source venv/bin/activate
           pip install -r requirements.txt
 
-      # Шаг 4: Запускаем тесты
       - name: Run tests
         run: |
           source venv/bin/activate
           pytest tests/ --maxfail=1 --disable-warnings -v
 
-      # Шаг 5: Логирование
       - name: Generate HTML report
         run: |
           source venv/bin/activate
